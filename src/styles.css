@@ -1,0 +1,7 @@
+body{
+  background-color: #252525;
+}
+
+div.card{
+  border: solid 2px red;
+}
