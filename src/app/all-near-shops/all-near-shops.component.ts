@@ -10,13 +10,23 @@ import {Shop} from "../models/shop";
 export class AllNearShopsComponent implements OnInit {
 
   shops: Shop[];
-
-
+  longitude: string;
+  latitude: string;
   constructor(private _appService: AppService) { }
 
   ngOnInit() {
-    this._appService.getShops("http://localhost:8080/shops/allNearby/-6.75778/33.97468/")
-      .subscribe(shops => this.shops = shops);
+    /**
+     * If the user cleared the Local storage manually
+     */
+    if(localStorage.getItem('longitude') == null || localStorage.getItem('latitude') == null){
+      alert('coordinates not available, reload the page');
+  }
+  else{
+      this.longitude = localStorage.getItem('longitude');
+      this.latitude = localStorage.getItem('latitude');
+      this._appService.getShops(`http://localhost:8080/shops/allNearby/${this.longitude}/${this.latitude}/`)
+        .subscribe(shops => this.shops = shops);
+    }
   }
 
 }
