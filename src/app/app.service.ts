@@ -86,7 +86,7 @@ export class AppService {
     let httpOptions = {
       headers: new HttpHeaders({'Authorization': "Basic " + JSON.parse(localStorage.getItem('currentUser')).token})
     };
-    return this._http.put<Shop[]>(`http://localhost:8080/shops/likeShop/${shopId}/${username}`, {}, httpOptions)
+    return this._http.put<Shop[]>(`http://localhost:8080/shops/dislikeShop/${shopId}/${username}`, {}, httpOptions)
       .pipe(
         catchError(this.handleError('dislike', []))
       );
