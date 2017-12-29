@@ -9,6 +9,7 @@ import {GeolocationService} from "./geolocation.service";
 export class AppComponent implements OnInit{
   longitude: string;
   latitude: string;
+
   constructor(private geolocationService: GeolocationService){
 
   }
@@ -28,7 +29,6 @@ export class AppComponent implements OnInit{
       function() {
       }
     );
-
-
   }
+
 }
