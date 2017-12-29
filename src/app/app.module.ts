@@ -14,6 +14,7 @@ import { GeolocationService } from './geolocation.service';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     PreferredShopsComponent,
     AllNearShopsComponent,
     LoginComponent,
-    NavBarComponent
+    NavBarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
