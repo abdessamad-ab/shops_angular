@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AppService} from "../app.service";
 import {Shop} from "../models/shop";
+import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-preferred-shops',
@@ -10,17 +11,21 @@ import {Shop} from "../models/shop";
 export class PreferredShopsComponent implements OnInit {
 
   preferredShops: Shop[];
+  currentUser;
 
-
-  constructor(private _appService: AppService) { }
+  constructor(private _appService: AppService) {
+    this._appService.verifyAuthentication();
+  }
 
   ngOnInit() {
-    this._appService.getShops("http://localhost:8080/shops/likedShops/username")
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._appService.getPreferredShops(this.currentUser.username)
       .subscribe(shops => this.preferredShops = shops);
   }
 
   removelikedShop(shopId: string){
-    this._appService.getShops("http://localhost:8080/shops/removeLikedShop/"+shopId+"/username")
+    this._appService.verifyAuthentication();
+    this._appService.removelikedShop(shopId, this.currentUser.username)
       .subscribe(shops => this.preferredShops = shops);
   }
 

@@ -37,7 +37,7 @@ export class AllNearShopsComponent implements OnInit {
         function() {
           self.longitude = localStorage.getItem('longitude');
           self.latitude = localStorage.getItem('latitude');
-          self._appService.getAllShops(`http://localhost:8080/shops/allNearby/${self.longitude}/${self.latitude}/`)
+          self._appService.getAllShops(self.longitude,self.latitude)
             .subscribe(shops => self.shops = shops);
         }
       );
@@ -45,7 +45,7 @@ export class AllNearShopsComponent implements OnInit {
   else{
       this.longitude = localStorage.getItem('longitude');
       this.latitude = localStorage.getItem('latitude');
-      this._appService.getAllShops(`http://localhost:8080/shops/allNearby/${this.longitude}/${this.latitude}/`)
+      self._appService.getAllShops(this.longitude, this.latitude)
         .subscribe(shops => this.shops = shops);
     }
   }

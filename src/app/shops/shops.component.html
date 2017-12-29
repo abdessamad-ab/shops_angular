@@ -4,8 +4,10 @@
         <div class="card-body">
           <h4 class="card-title">{{shop.name}}</h4>
           <h6 class="card-text">{{shop.city}}  {{shop.email}}</h6>
-          <button class="btn btn-primary" (click)="likeShop(shop.id)">Like</button>
-          <button class="btn btn-danger" (click)="dislikeShop(shop.id)">Dislike</button>
+          <div>
+            <button class="btn btn-primary" (click)="likeShop(shop.id)">Like</button>
+            <button class="btn btn-danger float-md-right" (click)="dislikeShop(shop.id)">Dislike</button>
+          </div>
         </div>
       </div>
   </div>

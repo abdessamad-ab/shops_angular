@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {User} from "../models/user";
+import {AppService} from "../app.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   password;
   failedAuthentication;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private _appService: AppService) { }
 
   ngOnInit() {
     if(localStorage.getItem('currentUser')) {
@@ -28,7 +29,6 @@ export class LoginComponent implements OnInit {
     this.http.get<User>(`http://localhost:8080/authentication?email=${this.email}&password=${this.password}`)
       .subscribe(user => {
         if(user){
-          console.log('in if user');
           console.log(user);
 
           let curentUser = {
@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
           // reload navbar
           location.reload();
         }else{
-          console.log('failure: '+this.email+' '+this.password);
           this.failedAuthentication = true;
         }
-      });
+      },
+        error => alert('Error:\n'+error.name));
   }
 
 }
