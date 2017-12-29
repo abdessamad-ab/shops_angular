@@ -34,6 +34,9 @@ body {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+.form-signin input:invalid {
+  border: 2px dashed red;
+}
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;

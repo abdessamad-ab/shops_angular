@@ -28,15 +28,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    console.log('login');
     if(this.email.trim().length === 0 || this.password.trim().length === 0){
       this.emptyField = true;
     }
     else{
-      this.http.get<User>(`http://localhost:8080/authentication?email=${this.email}&password=${this.password}`)
+      this.http.post<User>(`http://localhost:8080/authentication`, {'email': this.email, 'password': this.password})
         .subscribe(user => {
             if (user) {
-              console.log(user);
-
               let curentUser = {
                 username: user.username,
                 token: btoa(`${user.email}:${user.password}`)
